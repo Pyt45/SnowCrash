@@ -8,9 +8,9 @@ ls -ls
 # so i tried this one which was a hint from 42 vidoes
 find / -group flag00 -exec ls -l {} \; 2>/dev/null
 ```
-output of the above command gives me:
-----r--r-- 1 flag00 flag00 15 Mar  5  2016 /usr/sbin/john
-----r--r-- 1 flag00 flag00 15 Mar  5  2016 /rofs/usr/sbin/john
+output of the above command gives me:<br />
+----r--r-- 1 flag00 flag00 15 Mar  5  2016 /usr/sbin/john<br/>
+----r--r-- 1 flag00 flag00 15 Mar  5  2016 /rofs/usr/sbin/john<br/>
 
 ```bash
 cat /usr/sbin/john
