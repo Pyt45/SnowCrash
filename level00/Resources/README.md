@@ -9,9 +9,8 @@ ls -ls
 find / -group flag00 -exec ls -l {} \; 2>/dev/null
 ```
 output of the above command gives me:
-...(a lot of file)
-/usr/sbin/john
-/rofs/usr/sbin/john
+----r--r-- 1 flag00 flag00 15 Mar  5  2016 /usr/sbin/john
+----r--r-- 1 flag00 flag00 15 Mar  5  2016 /rofs/usr/sbin/john
 
 ```bash
 cat /usr/sbin/john
