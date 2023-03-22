@@ -3,6 +3,7 @@ token
 ./level09 token
 tpmhr
 
+```bash
 cat <<EOF > /var/tmp/decrypt.c
 #include <stdio.h>
 
@@ -17,6 +18,7 @@ chmod 777 .
 gcc -std=c99 /var/tmp/decrypt.c -o a.out
 ./a.out `cat token`
 f3iji1ju5yuevaus41q1afiuq
+```
 su flag09
 
 getflag -->
