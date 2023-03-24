@@ -10,8 +10,10 @@ ls -la
 -rwsr-sr-x 1 flag03  level03 8627 Mar  5  2016 level03
 # run strings level03, you can use gdb or objdump
 ```
-This file has a strange permissions the one that we don't see often is `s`<br/>
-This tell us that this file can be run as ...<br/>
+This file has a strange permissions the one that we don't see often is `s` SUID<br/>
+SUID or Set Owner User ID is a permission bit flag that applies to executables.<br/>
+SUID allows an alternate user to run an executable with the same permissions<br/>
+as the owner of the file instead of the permissions of the alternate user.<br/>
 
 Using objdump<br/>
 ```bash
