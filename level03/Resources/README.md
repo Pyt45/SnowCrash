@@ -69,7 +69,8 @@ int main(int argc, char **argv, char **envp)
   setresgid(gid, gid, gid);
   setresuid(uid, uid, uid);
 
-  system("/usr/bin/env echo and now what?");
+  // this string obtains with strings level03
+  system("/usr/bin/env echo Exploit me");
 
 ```
 the parts that are matter to us are the call to getegid, geteuid, setresgid, setresuid and system
