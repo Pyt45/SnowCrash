@@ -1,4 +1,8 @@
+# Level07
+```bash
+ls -la
 
+```
 ltrace ./level07
 
 ```bash
@@ -42,13 +46,18 @@ Dump of assembler code for function main:
 
 ```c
 int main() {
-    g = getegid();
-    u = geteuid();
+  gid_t gid;
+  uid_t uid;
+  gid = getegid();
+  uid = geteuid();
 
-    setresgid(g);
-    setresuid(u);
-    asprintf(&buff, "/bin/echo %s", getenv("LOGNAME"));
-    system(buff);
+  setresgid(gid, gid, gid);
+  setresuid(uid, uid, uid);
+
+  char *buff;
+
+  asprintf(&buff, "/bin/echo %s", getenv("LOGNAME"));
+  system(buff);
 }
 ```
 
