@@ -1,12 +1,16 @@
+# Level13
+
 ```bash
 ls -la
 -rwsr-sr-x 1 flag13  level13 7303 Aug 30  2015 level13
-
+```
+*using gdb we can debug this program*
+```bash
 gdb level13
 
-set height 0
-set disassembly-flavor intel
-disas main
+set height 0 # to see the full main
+set disassembly-flavor intel # Intel syntax
+disas main # disassemble the main
 
 Dump of assembler code for function main:
    0x0804858c <+0>:     push   ebp
@@ -33,7 +37,8 @@ Dump of assembler code for function main:
    0x080485e8 <+92>:    leave  
    0x080485e9 <+93>:    ret    
 End of assembler dump.
-
+# The program does check for the real uid of the calling process if it does equal 2013 and then jump to printf that print UID 2013 started us but we we expect 4242
+# So Let's set a break point at address 0x0804859a to change the value to the expected uid which 4242
 b *0x0804859a
 run
 p $eax
@@ -41,5 +46,4 @@ $1 = 2013
 set $eax=4242
 n
 your token is 2A31L79asukciNyi8uppkEuSx
-
 ```
